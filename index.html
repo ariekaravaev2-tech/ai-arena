@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020"><title>AI ARENA — עולם הבינה המלאכותית</title>
+<style>
+:root{--bg:#090e1d;--panel:#121b30;--panel2:#1a2741;--line:#2a3958;--text:#f5f7ff;--muted:#aab7d0;--purple:#a99aff;--cyan:#7ce4dc;--green:#83e0b1;--orange:#ffc27d}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20234c 0,transparent 36%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:20px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 22px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}.logo{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#7866ff,#2bc5c0);font-weight:900}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button,.btn{border:1px solid var(--line);border-radius:12px;padding:9px 14px;background:#17223a;color:var(--text)}.nav button.active,.btn.primary{background:linear-gradient(135deg,#6656d9,#376f9d);border-color:transparent}.hero{padding:35px 0 26px}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:2px;font-size:12px}.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.08;margin:10px 0}.gradient{background:linear-gradient(90deg,#b5a8ff,#73e1d9);-webkit-background-clip:text;color:transparent}.hero p,.muted{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat,.panel,.card{background:linear-gradient(145deg,#15213a,#10182b);border:1px solid var(--line);border-radius:18px;padding:17px}.stat strong{display:block;font-size:24px}.section{margin:28px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}.section h2{font-size:25px;margin:0}.tools{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.field{background:#0e172a;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;min-width:0}.tools input{flex:1;min-width:180px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}.card{cursor:pointer;transition:.18s}.card:hover{transform:translateY(-3px);border-color:#9285f5}.card .symbol{font-size:32px}.card h3{margin:6px 0 0}.tag{display:inline-block;background:#27264a;color:#c9c0ff;padding:3px 9px;border-radius:999px;font-size:11px;margin:3px 3px 0 0}.pill{font-size:11px;color:var(--green);border:1px solid #326e5b;padding:3px 8px;border-radius:999px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.hidden{display:none!important}.detail{display:grid;grid-template-columns:1.2fr 1fr;gap:15px}.detail ul{padding-right:20px;color:#d6def0}.price{font-size:28px;font-weight:900}.small{font-size:12px;color:var(--muted)}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px;background:#111a2d}th,td{text-align:right;padding:12px;border-bottom:1px solid var(--line)}th{background:#202b46;color:#d9d5ff}td{color:#e1e7f5}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button{background:#18243c;border:1px solid var(--line);color:var(--text);padding:9px 13px;border-radius:10px}.tabs button.active{background:#5748a9}.note{border-right:3px solid var(--orange);background:#2a241d;color:#f6dfc4;padding:12px;border-radius:10px;font-size:13px}.good{border-right:3px solid var(--green);background:#142b2a;color:#c7f5e4;padding:12px;border-radius:10px;font-size:13px}.compare-list{display:flex;gap:8px;flex-wrap:wrap}.check{background:#17223a;border:1px solid var(--line);padding:8px 10px;border-radius:10px}.footer{padding:30px 0;color:var(--muted);font-size:12px;text-align:center}.badge{font-size:11px;color:#d2caff}.meter{height:7px;background:#283653;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,#7666f1,#5bd7cf)}a{color:#b8adff}.recommend{display:grid;grid-template-columns:1fr 1fr;gap:10px}.recommend label{display:block;color:var(--muted);font-size:13px;margin-bottom:5px}@media(max-width:700px){.wrap{padding:14px}.top{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}.detail,.recommend{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.hero{padding-top:20px}}
+
+/* Refined motion and favorites */
+.favorite-btn{border:1px solid #5a5549;background:#292a28;color:#c9b16e;border-radius:10px;width:36px;height:34px;font-size:21px;line-height:1;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.favorite-btn:hover{transform:scale(1.08);background:#393326}.favorite-btn.is-favorite{color:#f1ca68;border-color:#b89443;background:#40351f}
+.favorite-filter{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:13px;white-space:nowrap}
+.token-track{touch-action:pan-y;isolation:isolate}
+.token-track:before{animation:particleDrift 18s linear infinite}
+.token-track:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 15%,#ffffff0b 42%,transparent 65%);transform:translateX(-100%);animation:trackSheen 5.5s ease-in-out infinite;pointer-events:none}
+.token-fill{transition:width .12s cubic-bezier(.2,.75,.25,1);background:linear-gradient(90deg,#9b895d18,#c8a95d42);box-shadow:inset -8px 0 18px #e5c47715}
+.token-knob{transition:left .12s cubic-bezier(.2,.75,.25,1),transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
+.token-slider-shell:active .token-knob{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 8px #d7a84b18,0 3px 18px #0009}
+.card{transition:transform .24s cubic-bezier(.2,.75,.2,1),background-color .2s,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 26px #0003}
+.btn,.nav button{transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.btn:active,.nav button:active{transform:scale(.98)}
+@keyframes particleDrift{from{background-position:10px 8px,31px 17px}to{background-position:116px 8px,-48px 17px}}
+@keyframes trackSheen{0%,55%{transform:translateX(-100%)}85%,100%{transform:translateX(100%)}}
+@media(max-width:700px){.token-layout{grid-template-columns:1fr}.token-control{padding:16px}.token-entry{grid-template-columns:1fr}.favorite-filter{font-size:12px}.tools{gap:8px}.tools #search{min-width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+
+<style>
+:root{--bg:#111213;--panel:#1a1b1d;--panel2:#222427;--line:#35383b;--text:#f1f1ed;--muted:#a6a7a3;--accent:#d7a84b;--good:#87b99a;--warn:#d7a84b;--radius:16px}
+body{background:var(--bg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--text)}
+.wrap{max-width:1360px;padding:24px}.top{position:sticky;top:0;z-index:20;background:rgba(17,18,19,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -24px;padding:14px 24px;flex-wrap:wrap}.logo{background:#e6e3da;color:#171819;border-radius:12px;font-weight:700}.brand{letter-spacing:0;font-weight:750}.brand small{letter-spacing:.04em}.nav{gap:4px}.nav button,.btn{background:transparent;border:1px solid transparent;color:var(--muted);border-radius:10px;padding:9px 13px;transition:background-color .18s,border-color .18s,color .18s,transform .18s}.nav button:hover,.btn:hover{background:#292b2d;color:var(--text);border-color:#44474a}.nav button.active,.btn.primary{background:#e6e3da;color:#171819;border-color:#e6e3da}.nav button.nav-open{transform:scale(1.07);background:#e6e3da;color:#171819;border-color:#e6e3da}.hero{padding:54px 0 30px;max-width:850px}.eyebrow{color:var(--accent);letter-spacing:.04em;font-weight:650}.hero h1{font-size:clamp(36px,5vw,58px);font-weight:650;line-height:1.12;letter-spacing:-.035em}.gradient{color:#e6e3da;background:none;-webkit-text-fill-color:currentColor}.hero p{max-width:650px}.stats{grid-template-columns:repeat(3,minmax(0,1fr));max-width:850px}.stat,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:none}.stat strong{font-weight:650;font-variant-numeric:tabular-nums}.section{margin:36px 0}.section h2{font-weight:620;letter-spacing:-.02em}.field{background:#141516;border:1px solid #414447;border-radius:10px;color:var(--text);padding:12px}.field:focus{outline:2px solid #d7a84b;outline-offset:2px}.tools{align-items:center}.token-trigger{border-color:#55504a;color:#f0d49a;white-space:nowrap}.grid{gap:12px;grid-template-columns:repeat(auto-fit,minmax(235px,1fr))}.card{transition:background-color .16s,border-color .16s}.card:hover{transform:none;border-color:#a88b52;background:#222426}.card .symbol{font-size:26px;color:#e1c58c}.card h3{font-weight:620}.tag{background:#2b2b28;color:#d9c99f;border-radius:6px;padding:3px 7px}.pill{border:0;background:#2a2b2c;color:#c6c6c1;border-radius:6px}.price{font-weight:650;font-variant-numeric:tabular-nums}.tablewrap{border-color:var(--line)}table{background:var(--panel)}th{background:#292b2d;color:#e5e2d8}td{color:#e5e5e0}a{color:#e0bd75}.meter{background:#35383b}.meter span{background:#c5a15b}.note,.good{background:#252522;color:#e7e1d3;border-color:var(--accent)}.footer{border-top:1px solid var(--line)}
+.view{animation:pageIn .22s ease both}@keyframes pageIn{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:none}}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:80;display:none;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex;animation:fadeIn .16s ease}.modal-window{width:min(900px,100%);max-height:min(88vh,900px);overflow:auto;background:#1b1c1e;border:1px solid #48494a;border-radius:20px;padding:22px;box-shadow:0 24px 90px #0009;animation:modalIn .24s cubic-bezier(.2,.75,.2,1)}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}.modal-head h2{margin:0;font-size:22px;font-weight:620}.modal-close{font-size:22px;border:0;background:#2b2d2f;color:var(--text);border-radius:9px;width:38px;height:38px}.modal-content{min-height:120px}.modal-content .view{display:block!important}.modal-content .view.hidden{display:none!important}
+.token-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.token-control{background:#222426;border:1px solid var(--line);border-radius:16px;padding:20px}.token-value{font-size:32px;font-weight:650;font-variant-numeric:tabular-nums;margin:10px 0}.token-range{width:100%;accent-color:#d7a84b;height:8px;cursor:pointer}.token-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.token-ends span:last-child{display:flex;align-items:center;gap:5px}.token-flight{display:inline-block;font-size:20px;transform:rotate(-18deg)}
+.token-slider-shell{margin:22px 0 12px}.token-track{height:74px;position:relative;border:1px solid #55514a;border-radius:40px;background:#242522;overflow:hidden;box-shadow:inset 0 2px 8px #0007}.token-track:before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#c9b98d 1px,transparent 1.8px),radial-gradient(circle,#aaa 1px,transparent 1.8px);background-size:53px 29px,79px 41px;background-position:10px 8px,31px 17px;opacity:.42}.token-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#9b895d22,#c8a95d35);border-radius:40px;pointer-events:none}.token-range-overlay{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;z-index:4}.token-knob{position:absolute;top:50%;left:0;z-index:3;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#e8e4d8;color:#171819;border:3px solid #b9a36c;box-shadow:0 2px 12px #0008;transform:translate(-50%,-50%);pointer-events:none;font-size:26px;transition:left .08s linear,transform .18s}.token-knob:after{content:"";position:absolute;right:42px;width:0;height:3px;border-radius:5px;background:#e5c477;opacity:0;transition:width .18s,opacity .18s}.token-slider-shell.is-max .token-knob{transform:translate(-50%,-50%) rotate(-18deg) scale(1.12)}.token-slider-shell.is-max .token-knob:after{width:30px;opacity:1}.token-scale{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)}.token-scale span:last-child{text-align:left}.token-scale strong{font-size:17px;color:var(--text);font-variant-numeric:tabular-nums}.token-entry{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-top:14px}.token-entry input{width:100%;min-width:0}.token-numbers{display:flex;gap:8px;align-items:center;margin-top:14px}.token-numbers input{width:100%;min-width:0}.token-table{width:100%;min-width:0}.token-table th,.token-table td{padding:9px;font-size:13px}.token-results{display:grid;gap:8px}.token-result{display:flex;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid var(--line)}.token-result strong{font-variant-numeric:tabular-nums}.model-kind{font-size:11px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid label{display:grid;gap:6px;color:var(--muted);font-size:13px}.wide{grid-column:1/-1}.skill-layout{display:grid;grid-template-columns:240px 1fr;gap:18px}.skill-filters{display:grid;gap:7px;align-content:start}.skill-filter{padding:10px;text-align:right;border:1px solid var(--line);background:#222426;color:var(--text);border-radius:9px}.skill-filter.active{border-color:var(--accent);background:#302b21}.skill-item{padding:15px;border:1px solid var(--line);border-radius:12px;margin-bottom:9px;background:#222426}.skill-item h4{margin:0 0 5px;font-weight:620}.skill-item p{margin:0 0 8px;color:var(--muted);font-size:13px}.skill-item a{font-size:13px}.upgrade-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.plan-box{border:1px solid var(--line);background:#222426;border-radius:14px;padding:18px}.plan-box.featured{border-color:#c4a15f}.chat-fab{position:fixed;bottom:18px;left:18px;z-index:50;border:0;background:#e6e3da;color:#171819;border-radius:50px;padding:13px 18px;font-weight:650;box-shadow:0 5px 25px #0007}.chat-panel{position:fixed;bottom:76px;left:18px;width:min(360px,calc(100vw - 36px));height:440px;max-height:65vh;z-index:51;background:#1b1c1e;border:1px solid var(--line);border-radius:16px;display:none;flex-direction:column;overflow:hidden}.chat-panel.open{display:flex}.chat-log{padding:14px;overflow:auto;flex:1}.chat-msg{padding:10px 12px;border-radius:10px;background:#292b2d;margin-bottom:8px;font-size:13px}.chat-input{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line)}.chat-input input{flex:1;min-width:0}.toast{position:fixed;bottom:18px;right:18px;z-index:100;background:#252622;border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:none}.toast.show{display:block}
+@media(max-width:760px){.wrap{padding:14px}.top{margin:0 -14px;padding:12px 14px;gap:10px}.top{position:relative}.nav{width:100%;overflow-x:auto;flex-wrap:nowrap}.nav button{white-space:nowrap;padding:8px 10px}.stats{grid-template-columns:1fr}.token-layout,.skill-layout,.upgrade-grid,.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}.hero{padding-top:32px}.modal-window{padding:16px;max-height:92vh}.login-trigger{position:absolute;left:14px;top:12px}.brand{padding-left:90px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+<style>
+
+/* Mobile-first interaction pass: keep the same product, but give phones their own layout. */
+.mobile-menu-toggle{display:none}
+@media (max-width: 760px){
+  html{ -webkit-text-size-adjust:100%; }
+  body{min-width:320px; overflow-x:hidden;}
+  .wrap{width:100%;max-width:none;padding:0 16px 28px;margin:0;}
+  .top{position:sticky;top:0;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px;margin:0 -16px;padding:10px 16px;background:rgba(17,18,19,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(12px);}
+  .brand{grid-column:1;min-width:0;gap:9px;font-size:15px;}
+  .brand small{font-size:9px;letter-spacing:0;}
+  .logo{width:38px;height:38px;flex:0 0 38px;border-radius:10px;}
+  .login-trigger{grid-column:2;position:static;left:auto;top:auto;padding:8px 10px;min-height:42px;font-size:13px;white-space:nowrap;}
+  .mobile-menu-toggle{display:inline-flex;grid-column:3;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#242526;color:var(--text);font-size:21px;line-height:1;}
+  .nav{display:none;grid-column:1/-1;grid-row:2;position:static;width:100%;padding:8px 0 2px;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;overflow:visible;border-top:1px solid var(--line);}
+  .nav.mobile-nav-open{display:grid;}
+  .nav button{width:100%;min-width:0;min-height:44px;padding:10px 8px;text-align:center;white-space:normal;font-size:14px;border:1px solid var(--line);background:#202122;}
+  .nav button.nav-open{transform:none;}
+  .hero{padding:28px 0 18px;max-width:none;}
+  .hero h1{font-size:clamp(34px,9vw,44px);line-height:1.12;letter-spacing:-.02em;margin:8px 0 12px;}
+  .hero p{font-size:15px;line-height:1.55;}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0;max-width:none;}
+  .stat{padding:12px 10px;border-radius:12px;min-width:0;}
+  .stat strong{font-size:20px;}
+  .stat span{font-size:11px;line-height:1.35;display:block;}
+  .section{margin:28px 0;}
+  .section h2{font-size:21px;}
+  .section-head{align-items:stretch;flex-direction:column;gap:8px;}
+  .tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
+  .tools input,.tools select,.tools .btn{width:100%;min-width:0;max-width:100%;}
+  .tools input:first-child{grid-column:1/-1;}
+  .field{width:100%;min-width:0;font-size:16px;padding:12px;}
+  .tools input{min-width:0;}
+  .grid{grid-template-columns:minmax(0,1fr);gap:10px;}
+  .card{padding:16px;border-radius:14px;min-width:0;overflow-wrap:anywhere;}
+  .card h3{font-size:18px;}
+  .detail,.recommend,.token-layout,.skill-layout,.upgrade-grid,.form-grid{grid-template-columns:minmax(0,1fr);}
+  .detail{gap:12px;}
+  .panel,.token-control{padding:16px;min-width:0;}
+  .token-track{height:62px;}
+  .token-knob{width:48px;height:48px;font-size:22px;}
+  .token-knob:after{right:36px;}
+  .token-scale{grid-template-columns:1fr auto 1fr;font-size:11px;gap:4px;}
+  .token-scale strong{font-size:15px;}
+  .token-value{font-size:28px;}
+  .token-entry,.token-numbers{grid-template-columns:minmax(0,1fr);display:grid;}
+  .token-entry .btn,.token-numbers .btn{width:100%;}
+  .tablewrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{min-width:600px;}
+  .token-table{min-width:0;table-layout:fixed;}
+  .token-table th,.token-table td{padding:7px 5px;font-size:11px;overflow-wrap:anywhere;}
+  .modal-backdrop{padding:0;align-items:stretch;}
+  .modal-window{width:100%;height:100dvh;max-height:100dvh;max-width:none;border-radius:0;border:0;padding:calc(env(safe-area-inset-top) + 14px) 16px calc(env(safe-area-inset-bottom) + 18px);}
+  .modal-head{position:sticky;top:0;background:#1b1c1e;padding:8px 0 12px;z-index:2;}
+  .modal-head h2{font-size:19px;}
+  .modal-content{min-height:0;padding-bottom:20px;}
+  .modal-content .view{width:100%;}
+  .modal-content .section{margin:18px 0;}
+  .modal-content .tools{grid-template-columns:minmax(0,1fr);}
+  .modal-content .tools input:first-child{grid-column:auto;}
+  .skill-filters{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .skill-filter{min-height:42px;text-align:center;font-size:13px;}
+  .chat-fab{bottom:calc(env(safe-area-inset-bottom) + 14px);left:12px;padding:12px 15px;min-height:44px;}
+  .chat-panel{left:10px;right:10px;bottom:calc(env(safe-area-inset-bottom) + 68px);width:auto;max-height:70dvh;height:440px;}
+  .chat-input{gap:8px;}
+  .chat-input .btn{min-width:76px;}
+  .footer{padding:24px 0;font-size:11px;}
+  button,.nav button,.tabs button,.modal-close{min-height:42px;}
+}
+@media (max-width:380px){
+  .wrap{padding-left:12px;padding-right:12px;}
+  .top{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px;}
+  .brand{font-size:13px;}
+  .brand small{font-size:8px;}
+  .stats{gap:6px;}
+  .stat{padding:10px 7px;}
+  .stat strong{font-size:18px;}
+  .token-knob{width:44px;height:44px;}
+}
+
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><div class="brand"><div class="logo">AI</div><div>AI ARENA<small>EXPLORE · COMPARE · DISCOVER</small></div></div><nav class="nav"><button class="active" data-tab="home">דף ראשי</button><button data-tab="prices">מחירים</button><button data-tab="compare">השוואה</button><button data-tab="recommend">מצא לי AI</button><button data-tab="about">אודות</button><button data-tab="skills">Skills</button><button data-tab="upgrade">Upgrade</button></nav><button class="btn login-trigger" id="openAccount" type="button">התחברות</button></header>
+<main>
+<section id="home" class="view"><div class="hero"><div class="eyebrow">THE AI UNIVERSE</div><h1>כל עולם ה-AI.<br><span class="gradient">במקום אחד.</span></h1><p>גלה מודלים מובילים, בדוק במה כל אחד מצטיין, השווה יכולות ומחירים — ובחר חכם.</p><div class="stats"><div class="stat"><strong>9+</strong><span class="muted">חברות וכלי AI</span></div><div class="stat"><strong>4</strong><span class="muted">תקופות לחישוב עלויות</span></div><div class="stat"><strong>100%</strong><span class="muted">הפרדה בין מחיר רשמי לצד שלישי</span></div></div></div>
+<div class="section"><div class="section-head"><h2>בחר מודל AI</h2><span class="small">לחץ על כרטיס כדי לפתוח פרטים</span></div><div class="tools"><input id="search" class="field" placeholder="חפש מודל או חברה..."><button class="btn token-trigger" id="openTokens" type="button" aria-label="מחשבון טוקנים">◉ טוקנים</button><select id="category" class="field"><option value="all">כל התחומים</option><option>חשיבה</option><option>תכנות</option><option>מחקר</option><option>יצירת תמונות</option><option>עבודה</option></select><label class="favorite-filter"><input type="checkbox" id="onlyFavorites"> ★ מועדפים בלבד</label></div><div id="cards" class="grid"></div></div>
+<div id="detail" class="panel section"><div class="muted">בחר מודל כדי לראות פרטים.</div></div>
+</section>
+<section id="prices" class="view hidden"><div class="section-head"><div><div class="eyebrow">TRANSPARENT PRICING</div><h2>מרכז המחירים</h2><p class="muted">מחירי ספקים רשמיים שנמצאו במקורות המקושרים. מטבע המקור נשמר.</p></div><span class="pill">בדיקת מקורות: 06.11.2026</span></div>
+<div class="panel section"><h3>מחשבון עלויות</h3><div class="recommend"><div><label>בחר מסלול</label><select id="calcPlan" class="field" style="width:100%"></select></div><div><label>תקופת השוואה</label><select id="period" class="field" style="width:100%"><option value="day">יום (חישוב יחסי)</option><option value="week">שבוע (חישוב יחסי)</option><option value="month" selected>חודש</option><option value="year">שנה</option></select></div></div><div class="row" style="margin-top:16px"><div><div class="small">עלות לתקופה שנבחרה</div><div id="calcResult" class="price">—</div><div id="calcNote" class="small"></div></div><button class="btn primary" id="buyPlan">לעמוד הרשמי</button></div><p class="small">חישוב יומי/שבועי הוא חלוקה חשבונאית של מחיר חודשי בלבד — אינו אומר שהספק מוכר מנוי יומי או שבועי.</p></div>
+<div class="tools"><input id="priceSearch" class="field" placeholder="סנן תוכניות..."><select id="priceType" class="field"><option value="all">כל הספקים</option><option value="official">מנויים רשמיים</option><option value="short">מסלולים יומיים/שבועיים מצד שלישי</option><option value="free">חינמיים</option></select></div><div id="priceRows" class="grid"></div>
+<div class="section"><h3>גישה קצרה ליום או לשבוע — ספק צד שלישי</h3><div class="card"><div class="row"><div><h3>OpenLimits · Day Pass</h3><div class="muted">€10 · גישה ל-24 שעות למגוון מודלים · תקרת fair-use של $2,000 ליום</div></div><div class="price">€10</div></div><div class="row"><div><h3>OpenLimits · Week Pass</h3><div class="muted">€45 · גישה ל-7 ימים למגוון מודלים · תקרת fair-use של $2,000 ליום</div></div><div class="price">€45</div></div><p class="small">הספק מציין חידוש אוטומטי כל 24 שעות או 7 ימים, בכפוף לתנאי שימוש הוגן. זהו שירות צד שלישי עצמאי, לא מנוי רשמי של OpenAI, Google או Anthropic. המסלולים מתחדשים אוטומטית אלא אם מבטלים. בדוק תנאים ותקרת שימוש לפני רכישה.</p><a href="https://openlimits.app/" target="_blank" rel="noopener">בדוק פרטים ותנאים באתר הספק ↗</a></div></div>
+<div class="note">חשוב: מחירים עשויים להשתנות לפי מדינה, מטבע, מסים, חנות אפליקציות ומבצעים. כשאין מחיר ישראלי מאומת מוצג מחיר ארה״ב או המטבע המקורי, ולא המרה משוערת לשקלים. אין מחיר רשמי למסלול יומי/שבועי אלא אם מצוין אחרת.</div></section>
+<section id="compare" class="view hidden"><div class="eyebrow">SIDE BY SIDE</div><h2>השוואת מודלים</h2><p class="muted">בחר עד ארבעה מודלים להשוואה.</p><div id="compareChecks" class="compare-list"></div><div id="compareTable" class="section"></div></section>
+<section id="recommend" class="view hidden"><div class="eyebrow">SMART MATCH</div><h2>מצא את ה-AI שמתאים לך</h2><div class="panel section"><div class="recommend"><div><label>מה הכי חשוב לך?</label><select id="useCase" class="field" style="width:100%"><option value="study">לימודים והסברים</option><option value="code">תכנות ובניית אתרים</option><option value="research">מחקר ומידע עם מקורות</option><option value="creative">תמונות ויצירת תוכן</option><option value="office">עבודה ומסמכים</option><option value="general">שימוש כללי</option></select></div><div><label>תקציב חודשי</label><select id="budget" class="field" style="width:100%"><option value="0">רק חינמי</option><option value="20">עד 20 דולר</option><option value="50">עד 50 דולר</option><option value="100">עד 100 דולר</option><option value="500">אין מגבלה מוגדרת</option></select></div></div><button class="btn primary" id="recommendBtn" style="margin-top:15px">מצא המלצה</button><div id="recommendResult" class="section"></div></div></section>
+<section id="about" class="view hidden"><div class="eyebrow">ABOUT THE PROJECT</div><h2>מה זה AI ARENA?</h2><div class="panel"><p>מרכז השוואה עצמאי שמסביר על כלי בינה מלאכותית, תחומי החוזק שלהם, מסלולי התשלום וההבדל בין ספק רשמי לשירות צד שלישי.</p><ul><li>אין דירוג מוחלט — הבחירה תלויה בשימוש שלך.</li><li>מחירי API לפי שימוש אינם זהים למנוי צ'אט.</li><li>המחירים אינם הצעת מכירה ואינם כוללים בהכרח מסים.</li><li>קישורי המקור מובילים לספקים עצמם.</li></ul></div></section>
+</main><footer class="footer">AI ARENA · אבטיפוס עצמאי · מחירים שנבדקו ב-6 בנובמבר 2026 · עיצוב בהשראת Unslop מאת Damir Sokolovsky · CC BY 4.0 · github.com/heydamir/unslop · בדוק תמיד את המחיר הסופי אצל הספק.</footer></div>
+
+<div class="modal-backdrop" id="appModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-window"><div class="modal-head"><h2 id="modalTitle">AI ARENA</h2><button class="modal-close" id="closeModal" aria-label="סגירה">×</button></div><div class="modal-content" id="modalContent"></div></div></div>
+<button class="chat-fab" id="chatFab" type="button">עזרה באתר</button><div class="chat-panel" id="chatPanel"><div class="modal-head" style="padding:12px;margin:0"><h2>עזרה ב-AI ARENA</h2><button class="modal-close" id="closeChat">×</button></div><div class="chat-log" id="chatLog"><div class="chat-msg">היי. אפשר לשאול אותי איך להשתמש במחשבון הטוקנים, להשוות מודלים או למצוא Skill מתאים. כרגע זה בוט עזרה מקומי עם תשובות מובנות.</div></div><div class="chat-input"><input class="field" id="chatText" placeholder="כתוב שאלה..."><button class="btn primary" id="sendChat">שליחה</button></div></div><div class="toast" id="toast"></div>
+
+<script>
+const models=[
+{id:'chatgpt',name:'ChatGPT',company:'OpenAI',symbol:'✳',tags:['חשיבה','תכנות','יצירת תמונות','עבודה'],desc:'עוזר AI רב-שימושי ללימודים, כתיבה, חשיבה, קוד, ניתוח קבצים ויצירת תוכן.',strengths:['חשיבה ופתרון בעיות','כתיבת קוד ובניית אתרים','יצירת תמונות וניתוח קבצים','מחקר, לימודים ושיחות קוליות'],best:'שימוש כללי, לימודים ותכנות',url:'https://chatgpt.com/pricing/'},
+{id:'gemini',name:'Gemini',company:'Google',symbol:'✦',tags:['חשיבה','מחקר','יצירת תמונות','עבודה'],desc:'מודל Google שמשתלב בשירותי Google ומציע מחקר, יצירת תוכן וכלי פרודוקטיביות.',strengths:['עבודה עם Gmail ו-Docs','מחקר מעמיק','יצירת תמונות ווידאו בכלים נתמכים','ניתוח מסמכים'],best:'מחקר ועבודה בסביבת Google',url:'https://one.google.com/about/google-ai-plans/'},
+{id:'claude',name:'Claude',company:'Anthropic',symbol:'✺',tags:['חשיבה','תכנות','עבודה'],desc:'עוזר AI המתמקד בכתיבה, ניתוח, חשיבה ותכנות.',strengths:['כתיבה ועריכה איכותית','ניתוח מסמכים ארוכים','תכנות ו-Claude Code','משימות מורכבות'],best:'כתיבה, ניתוח ותכנות',url:'https://claude.com/pricing'},
+{id:'grok',name:'Grok',company:'xAI / X',symbol:'𝕏',tags:['חשיבה','מחקר','יצירת תמונות'],desc:'מודל AI עם חיבור לשירותי X ולכלי חיפוש, יצירת תוכן ומודלים מתקדמים.',strengths:['חיפוש ועדכונים מהאינטרנט ו-X','יצירת תמונות ווידאו','כלי קוד ותוכן','מודלים מתקדמים לפי תוכנית'],best:'מידע עדכני, X ויצירה',url:'https://x.ai/pricing'},
+{id:'deepseek',name:'DeepSeek',company:'DeepSeek',symbol:'◈',tags:['חשיבה','תכנות'],desc:'מודלים המוכרים ביכולות חשיבה, מתמטיקה ותכנות. הצ׳אט זמין בחינם; API מחויב בנפרד.',strengths:['מתמטיקה וחשיבה לוגית','כתיבת קוד','פתרון בעיות','אפשרויות API'],best:'מתמטיקה ותכנות בתקציב נמוך',url:'https://www.deepseek.com/'},
+{id:'copilot',name:'Copilot',company:'Microsoft',symbol:'◩',tags:['עבודה','חשיבה','יצירת תמונות'],desc:'עוזר AI שמשתלב עם Windows ויישומי Microsoft 365.',strengths:['Word, Excel ו-PowerPoint','עזרה בעבודה ומסמכים','סיכום ויצירת תוכן','שילוב בסביבת Microsoft'],best:'עבודה ומסמכים של Microsoft',url:'https://www.microsoft.com/he-il/copilot/pricing/individuals'},
+{id:'perplexity',name:'Perplexity',company:'Perplexity AI',symbol:'◉',tags:['מחקר','חשיבה'],desc:'מנוע חיפוש מבוסס AI שמציג תשובות עם מקורות וקישורים.',strengths:['מחקר באינטרנט','מקורות וציטוטים','השוואת מידע','בחירת מודלים מתקדמים'],best:'מחקר וחיפוש עם מקורות',url:'https://www.perplexity.ai/pro'},
+{id:'mistral',name:'Le Chat',company:'Mistral AI',symbol:'✣',tags:['חשיבה','תכנות','עבודה'],desc:'עוזר AI של Mistral עם כלים לכתיבה, קוד, מחקר ועבודה עם מודלים.',strengths:['כתיבה ותרגום','תכנות','ניתוח מידע','מודלים פתוחים למפתחים'],best:'שימוש כללי ומפתחים',url:'https://mistral.ai/'},
+{id:'meta',name:'Meta AI',company:'Meta',symbol:'∞',tags:['חשיבה','יצירת תמונות'],desc:'עוזר AI המשולב באפליקציות Meta ובאתר ייעודי, בהתאם לזמינות אזורית.',strengths:['שיחות ושאלות כלליות','יצירת תמונות במקומות נתמכים','שילוב באפליקציות Meta','שימוש יומיומי'],best:'שימוש מהיר ויומיומי',url:'https://www.meta.ai/'},
+{id:'qwen',name:'Qwen',company:'Alibaba Cloud',symbol:'Q',tags:['חשיבה','תכנות','מחקר'],desc:'משפחת מודלים של Alibaba, עם דגמים פתוחים ויכולות קוד, שפה וחשיבה.',strengths:['מודלים פתוחים להורדה','כתיבת קוד ופתרון בעיות','תמיכה בריבוי שפות','אפשרויות API ואירוח עצמי'],best:'מפתחים ומי שרוצה מודלים פתוחים',url:'https://qwen.ai/'},
+{id:'cohere',name:'Command',company:'Cohere',symbol:'C',tags:['מחקר','עבודה','חשיבה'],desc:'מודלים וכלים ארגוניים לחיפוש, RAG, סיכום ועבודה עם מידע עסקי.',strengths:['חיפוש סמנטי ו-RAG','עבודה עם מסמכים ארגוניים','סיכום וניתוח טקסט','כלי מפתחים ו-API'],best:'חיפוש ארגוני ומאגרי ידע',url:'https://cohere.com/pricing'},
+{id:'amazon',name:'Nova',company:'Amazon',symbol:'N',tags:['חשיבה','יצירת תמונות','עבודה'],desc:'משפחת מודלי Amazon Nova לטקסט, תמונה, וידאו ומשימות מולטימודליות דרך AWS.',strengths:['מודלים מולטימודליים','יצירת תמונות ווידאו בדגמים נתמכים','אינטגרציה עם AWS Bedrock','אפשרויות לארגונים'],best:'מפתחים וארגונים בסביבת AWS',url:'https://aws.amazon.com/bedrock/pricing/'},
+{id:'huggingface',name:'Hugging Face',company:'Hugging Face',symbol:'H',tags:['תכנות','מחקר','עבודה'],desc:'פלטפורמה לגילוי, שיתוף והרצה של אלפי מודלים פתוחים ו-datasets.',strengths:['מאגר מודלים גדול','Spaces להדגמות ואפליקציות','אירוח והרצת מודלים','קהילת קוד פתוח'],best:'ניסוי, למידה ואירוח מודלים פתוחים',url:'https://huggingface.co/pricing'},
+{id:'poe',name:'Poe',company:'Quora',symbol:'P',tags:['חשיבה','יצירת תמונות','עבודה'],desc:'ממשק אחד לגישה למודלים ובוטים מספקים שונים, עם מערכת נקודות שימוש.',strengths:['גישה למודלים שונים במקום אחד','יצירת בוטים אישיים','תמיכה במודלים מולטימודליים','נוח להשוואה בין תשובות'],best:'מי שרוצה לנסות מודלים רבים בממשק אחד',url:'https://poe.com/about'},
+{id:'groq',name:'Groq',company:'Groq',symbol:'G',tags:['מהירות','תכנות','עבודה'],desc:'פלטפורמת inference מהירה שמריצה מודלים פתוחים ומסחריים דרך API.',strengths:['זמני תגובה מהירים','הרצת מודלים פתוחים','API למפתחים','ניסויים ואבות־טיפוס'],best:'מפתחים שצריכים inference מהיר',url:'https://groq.com/'},
+{id:'together',name:'Together AI',company:'Together AI',symbol:'T',tags:['תכנות','מחקר','עבודה'],desc:'פלטפורמת ענן להרצה, התאמה ואימון של מודלי AI פתוחים.',strengths:['קטלוג מודלים פתוחים גדול','שרת inference','Fine-tuning ואימון','כלי מפתחים'],best:'מפתחים ומחקר עם מודלים פתוחים',url:'https://www.together.ai/'},
+{id:'fireworks',name:'Fireworks AI',company:'Fireworks AI',symbol:'✺',tags:['מהירות','תכנות','עבודה'],desc:'פלטפורמת inference ואופטימיזציה להרצת מודלי שפה ותמונה.',strengths:['הרצת מודלים בקצב גבוה','מודלים פתוחים ומולטימודליים','API ותשתית למפתחים','כלי אופטימיזציה'],best:'יישומים שדורשים inference יעיל',url:'https://fireworks.ai/'},
+{id:'kimi',name:'Kimi',company:'Moonshot AI',symbol:'月',tags:['חשיבה','מחקר','תכנות'],desc:'משפחת מודלי AI של Moonshot AI, עם דגש על הקשר ארוך, מחקר ומשימות מורכבות.',strengths:['עבודה עם הקשר ארוך','מחקר וסיכום מסמכים','תכנות וחשיבה','ממשק צ׳אט וכלי API'],best:'מסמכים ארוכים ומחקר',url:'https://www.moonshot.ai/'},
+{id:'zai',name:'GLM',company:'Z.ai',symbol:'Z',tags:['חשיבה','תכנות','עבודה'],desc:'משפחת מודלים של Z.ai למשימות שפה, קוד וסוכנים.',strengths:['כתיבת קוד','חשיבה ומשימות מרובות שלבים','מודלים פתוחים','API למפתחים'],best:'קוד ומשימות סוכנים',url:'https://z.ai/'},
+{id:'ai21',name:'Jamba',company:'AI21 Labs',symbol:'J',tags:['מחקר','עבודה','חשיבה'],desc:'מודלים וכלים לעבודה עם שפה, מסמכים ויישומים ארגוניים.',strengths:['עיבוד שפה ומסמכים','יישומים ארגוניים','מודלים יעילים','כלי מפתחים'],best:'יישומי שפה ארגוניים',url:'https://www.ai21.com/'}
+];
+// Verified published prices; null means the source page did not expose a fixed price in the checked result.
+const plans=[
+{name:'ChatGPT Go',brand:'OpenAI',price:8,currency:'USD',billing:'חודשי',annual:null,url:'https://openai.com/he-IL/index/introducing-chatgpt-go/',note:'מחיר ארה״ב; המחיר מותאם מקומית בחלק מהשווקים.',kind:'official',model:'chatgpt'},
+{name:'ChatGPT Plus',brand:'OpenAI',price:20,currency:'USD',billing:'חודשי',annual:null,url:'https://chatgpt.com/pricing/',note:'מחיר ארה״ב; מסלול חודשי.',kind:'official',model:'chatgpt'},
+{name:'ChatGPT Pro 100',brand:'OpenAI',price:100,currency:'USD',billing:'חודשי',annual:null,url:'https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers',note:'אחת משלוש רמות Pro.',kind:'official',model:'chatgpt'},
+{name:'ChatGPT Pro 200',brand:'OpenAI',price:200,currency:'USD',billing:'חודשי',annual:null,url:'https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers',note:'רמת Pro עם מכסת שימוש גבוהה יותר.',kind:'official',model:'chatgpt'},
+{name:'ChatGPT Pro 500',brand:'OpenAI',price:500,currency:'USD',billing:'חודשי',annual:null,url:'https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers',note:'כולל Ultrafast לפי דף התמחור.',kind:'official',model:'chatgpt'},
+{name:'Google AI Plus',brand:'Google',price:9.99,currency:'USD',billing:'חודשי',annual:null,url:'https://one.google.com/about/google-ai-plans/',note:'מחיר ארה״ב; זמינות ומחיר משתנים לפי מדינה.',kind:'official',model:'gemini'},
+{name:'Google AI Pro',brand:'Google',price:19.99,currency:'USD',billing:'חודשי',annual:199.99,url:'https://one.google.com/about/google-ai-plans/',note:'מחיר ארה״ב; קיימת אפשרות שנתית.',kind:'official',model:'gemini'},
+{name:'Google AI Ultra',brand:'Google',price:99.99,currency:'USD',billing:'חודשי',annual:null,url:'https://one.google.com/about/google-ai-plans/',note:'מחיר התחלתי בארה״ב; חיוב חודשי.',kind:'official',model:'gemini'},
+{name:'Claude Pro',brand:'Anthropic',price:20,currency:'USD',billing:'חודשי',annual:200,url:'https://claude.com/pricing',note:'20$ בחיוב חודשי או 200$ לשנה (מחיר ארה״ב).',kind:'official',model:'claude'},
+{name:'Claude Max 5x',brand:'Anthropic',price:100,currency:'USD',billing:'חודשי',annual:null,url:'https://claude.com/pricing',note:'רמת Max עם פי 5 שימוש ביחס ל-Pro לפי הספק.',kind:'official',model:'claude'},
+{name:'Claude Max 20x',brand:'Anthropic',price:200,currency:'USD',billing:'חודשי',annual:null,url:'https://claude.com/pricing',note:'רמת Max עם פי 20 שימוש ביחס ל-Pro לפי הספק.',kind:'official',model:'claude'},
+{name:'X Subscription Plus',brand:'xAI / X',price:8,currency:'USD',billing:'חודשי',annual:80,url:'https://x.ai/pricing',note:'כולל גישה בסיסית לכלי Grok לפי תוכנית X.',kind:'official',model:'grok'},
+{name:'X Subscription Premium',brand:'xAI / X',price:30,currency:'USD',billing:'חודשי',annual:300,url:'https://x.ai/pricing',note:'כולל Grok Bot וגישה מורחבת.',kind:'official',model:'grok'},
+{name:'X Subscription Super',brand:'xAI / X',price:100,currency:'USD',billing:'חודשי',annual:1000,url:'https://x.ai/pricing',note:'רמת שימוש גבוהה יותר.',kind:'official',model:'grok'},
+{name:'X Subscription Ultra',brand:'xAI / X',price:200,currency:'USD',billing:'חודשי',annual:2000,url:'https://x.ai/pricing',note:'רמת שימוש גבוהה ביותר לפי דף התמחור.',kind:'official',model:'grok'},
+{name:'Perplexity Pro',brand:'Perplexity',price:20,currency:'USD',billing:'חודשי',annual:200,url:'https://www.perplexity.ai/pro',note:'מחיר ארה״ב; הצעה שנתית עשויה להשתנות לפי מבצע.',kind:'official',model:'perplexity'},
+{name:'Perplexity Max',brand:'Perplexity',price:200,currency:'USD',billing:'חודשי',annual:2000,url:'https://www.perplexity.ai/pro',note:'מחיר ארה״ב; קיימת אפשרות שנתית באפליקציית האינטרנט.',kind:'official',model:'perplexity'},
+{name:'Microsoft 365 Personal',brand:'Microsoft',price:43,currency:'ILS',billing:'חודשי',annual:null,url:'https://www.microsoft.com/he-il/copilot/pricing/individuals',note:'מחיר ישראלי חודשי; כולל תכונות Microsoft 365 ו-AI לפי תנאים.',kind:'official',model:'copilot'},
+{name:'Microsoft 365 Family',brand:'Microsoft',price:53,currency:'ILS',billing:'חודשי',annual:null,url:'https://www.microsoft.com/he-il/copilot/pricing/individuals',note:'מחיר ישראלי חודשי; תכונות AI מוגבלות לבעל המינוי לפי הספק.',kind:'official',model:'copilot'},
+{name:'Microsoft 365 Premium',brand:'Microsoft',price:75,currency:'ILS',billing:'חודשי',annual:null,url:'https://www.microsoft.com/he-il/copilot/pricing/individuals',note:'מחיר ישראלי חודשי; המינוי מתחדש עד ביטול.',kind:'official',model:'copilot'},
+{name:'DeepSeek Chat',brand:'DeepSeek',price:0,currency:'USD',billing:'חינם',annual:null,url:'https://www.deepseek.com/',note:'אפליקציית הצ׳אט חינמית; API מחויב לפי שימוש.',kind:'free',model:'deepseek'},
+{name:'Meta AI',brand:'Meta',price:0,currency:'USD',billing:'חינם',annual:null,url:'https://www.meta.ai/',note:'גישה בסיסית חינמית; זמינות תכונות משתנה לפי מדינה.',kind:'free',model:'meta'},
+{name:'OpenLimits Day Pass',brand:'OpenLimits (צד שלישי)',price:10,currency:'EUR',billing:'24 שעות',annual:null,url:'https://openlimits.app/',note:'חידוש כל 24 שעות; כולל תקרת fair-use של $2,000 ליום; מתחדש אוטומטית. שירות צד שלישי, לא מנוי רשמי של יצרני המודלים.',kind:'short',model:'all'},
+{name:'OpenLimits Week Pass',brand:'OpenLimits (צד שלישי)',price:45,currency:'EUR',billing:'7 ימים',annual:null,url:'https://openlimits.app/',note:'חידוש כל 7 ימים; כולל תקרת fair-use של $2,000 ליום; מתחדש אוטומטית. שירות צד שלישי, לא מנוי רשמי של יצרני המודלים.',kind:'short',model:'all'}
+];
+const fmt=(v,c)=>c==='ILS'?'₪'+v.toLocaleString('he-IL'):c==='EUR'?'€'+v.toLocaleString('en-US'): '$'+v.toLocaleString('en-US',{maximumFractionDigits:2});
+let selected='chatgpt';
+function getFavorites(){try{return JSON.parse(localStorage.getItem('aiArenaFavoritesV1')||'[]')}catch(e){return []}}
+function toggleFavorite(id){let f=getFavorites();f=f.includes(id)?f.filter(x=>x!==id):[...f,id];try{localStorage.setItem('aiArenaFavoritesV1',JSON.stringify(f))}catch(e){}renderCards();toast(f.includes(id)?'נוסף למועדפים':'הוסר מהמועדפים')}
+function renderCards(){let q=document.getElementById('search').value.toLowerCase(),cat=document.getElementById('category').value,onlyFav=!!document.getElementById('onlyFavorites')?.checked,favs=getFavorites();document.getElementById('cards').innerHTML=models.filter(m=>(m.name+' '+m.company).toLowerCase().includes(q)&&(cat==='all'||m.tags.includes(cat))&&(!onlyFav||favs.includes(m.id))).map(m=>`<article class="card" data-id="${m.id}"><div class="row"><span class="symbol">${m.symbol}</span><span class="row"><span class="pill">${m.company}</span><button class="favorite-btn ${favs.includes(m.id)?'is-favorite':''}" data-fav="${m.id}" aria-label="הוסף למועדפים" title="מועדפים">${favs.includes(m.id)?'★':'☆'}</button></span></div><h3>${m.name}</h3><p class="muted">${m.desc}</p><div>${m.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="badge" style="margin-top:12px">לפרטים נוספים ←</div></article>`).join('')||'<p class="muted">לא נמצאו מודלים. נסה לשנות את החיפוש.</p>';document.querySelectorAll('#cards .card').forEach(c=>c.onclick=()=>showDetail(c.dataset.id));document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFavorite(b.dataset.fav)})}
+function showDetail(id){selected=id;let m=models.find(x=>x.id===id);document.getElementById('detail').innerHTML=`<div class="detail"><div><div class="eyebrow">MODEL PROFILE</div><h2>${m.symbol} ${m.name}</h2><p class="muted">${m.desc}</p><h3>במה הוא טוב?</h3><ul>${m.strengths.map(s=>`<li>${s}</li>`).join('')}</ul><p><b>מתאים במיוחד:</b> ${m.best}</p><button class="btn primary" onclick="openPrices('${id}')">הצג מסלולים ומחירים</button> <a href="${m.url}" target="_blank" rel="noopener">אתר רשמי ↗</a></div><div class="panel"><h3>תחומי יכולת</h3>${m.tags.map(t=>`<div style="margin:12px 0"><div class="row"><span>${t}</span><span class="small">תחום מרכזי</span></div><div class="meter"><span style="width:${70+((m.tags.indexOf(t)*7)%25)}%"></span></div></div>`).join('')}<p class="small">פסי התחומים מציינים תחומי התמחות כלליים, לא ציון ביצועים מדעי.</p></div></div>`;}
+function openPrices(id){document.querySelector('[data-tab="prices"]').click();document.getElementById('priceSearch').value=id==='all'?'':models.find(m=>m.id===id).company;renderPrices();}
+function renderPrices(){let q=document.getElementById('priceSearch').value.toLowerCase(),type=document.getElementById('priceType').value;let list=plans.filter(p=>(p.name+' '+p.brand).toLowerCase().includes(q)&&(type==='all'||(type==='official'&&p.kind==='official')||(type==='short'&&p.kind==='short')||(type==='free'&&p.kind==='free')));document.getElementById('priceRows').innerHTML=list.map((p,i)=>`<article class="card"><div class="row"><span class="pill">${p.kind==='short'?'צד שלישי':p.kind==='free'?'חינמי':'רשמי'}</span><span class="small">${p.brand}</span></div><h3>${p.name}</h3><div class="price">${fmt(p.price,p.currency)}</div><div class="muted">${p.billing}${p.annual!==null?' · שנתי: '+fmt(p.annual,p.currency):''}</div><p class="small">${p.note}</p><a href="${p.url}" target="_blank" rel="noopener">מקור / רכישה אצל הספק ↗</a></article>`).join('')||'<p class="muted">לא נמצאו תוכניות.</p>';}
+function setupCalculator(){let s=document.getElementById('calcPlan');s.innerHTML=plans.filter(p=>p.kind!=='short').map((p,i)=>`<option value="${plans.indexOf(p)}">${p.name} (${p.brand})</option>`).join('');function calc(){let p=plans[+s.value],per=document.getElementById('period').value;let val=p.price,desc='';if(per==='day'){val=p.price/30;desc='מחיר חודשי ÷ 30; חישוב השוואתי בלבד.'}if(per==='week'){val=p.price*7/30;desc='מחיר חודשי × 7 ÷ 30; חישוב השוואתי בלבד.'}if(per==='year'){if(p.annual!==null){val=p.annual;desc='מחיר שנתי שפורסם על ידי הספק.'}else{val=p.price*12;desc='מחיר חודשי × 12; לא בהכרח מסלול שנתי שניתן לרכישה.'}}if(per==='month')desc='מחיר חודשי שפורסם.';document.getElementById('calcResult').textContent=fmt(val,p.currency);document.getElementById('calcNote').textContent=desc;document.getElementById('buyPlan').onclick=()=>window.open(p.url,'_blank','noopener');}s.onchange=calc;document.getElementById('period').onchange=calc;calc();}
+function renderCompare(){document.getElementById('compareChecks').innerHTML=models.map(m=>`<label class="check"><input type="checkbox" value="${m.id}" ${['chatgpt','gemini','claude'].includes(m.id)?'checked':''}> ${m.name}</label>`).join('');document.getElementById('compareChecks').onchange=()=>{let ids=[...document.querySelectorAll('#compareChecks input:checked')].map(x=>x.value).slice(0,4);document.querySelectorAll('#compareChecks input').forEach(x=>x.disabled=!x.checked&&ids.length>=4);document.getElementById('compareTable').innerHTML=`<div class="tablewrap"><table><thead><tr><th>תחום</th>${ids.map(id=>`<th>${models.find(m=>m.id===id).name}</th>`).join('')}</tr></thead><tbody>${[['חברה',id=>models.find(m=>m.id===id).company],['חוזקות',id=>models.find(m=>m.id===id).strengths.join(' · ')],['מתאים ל',id=>models.find(m=>m.id===id).best],['אתר רשמי',id=>`<a href="${models.find(m=>m.id===id).url}" target="_blank">פתח ↗</a>`]].map(row=>`<tr><td>${row[0]}</td>${ids.map(id=>`<td>${row[1](id)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;};document.getElementById('compareChecks').dispatchEvent(new Event('change'));}
+function recommend(){let use=document.getElementById('useCase').value,b=+document.getElementById('budget').value;let pref={study:['chatgpt','gemini','claude'],code:['claude','chatgpt','deepseek'],research:['perplexity','gemini','chatgpt'],creative:['gemini','chatgpt','grok'],office:['copilot','chatgpt','gemini'],general:['chatgpt','gemini','claude']}[use];let candidates=pref.map(id=>models.find(m=>m.id===id));let p=candidates.find(m=>plans.some(x=>x.model===m.id&&(x.price===0||x.price<=b)))||candidates[0];document.getElementById('recommendResult').innerHTML=`<div class="good"><b>ההמלצה שלנו: ${p.name}</b><p>${p.best}. ${p.desc}</p><button class="btn primary" onclick="showDetail('${p.id}')">לפרטים על ${p.name}</button></div>`;}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==b.dataset.tab));});document.getElementById('search').oninput=renderCards;document.getElementById('category').onchange=renderCards;document.getElementById('priceSearch').oninput=renderPrices;document.getElementById('priceType').onchange=renderPrices;document.getElementById('recommendBtn').onclick=recommend;renderCards();showDetail('chatgpt');renderPrices();setupCalculator();renderCompare();
+</script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const modal=$('#appModal'),content=$('#modalContent'),main=$('main');let movedView=null,returnParent=null,returnNext=null;
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600)}
+function openModal(title,html){$('#modalTitle').textContent=title;content.innerHTML=html;modal.classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){if(movedView){movedView.classList.add('hidden');returnParent.insertBefore(movedView,returnNext);movedView=null}$$('.view').forEach(v=>v.classList.toggle('hidden',v.id!=='home'));modal.classList.remove('open');document.body.style.overflow='';$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab==='home'));$$('.nav button').forEach(b=>b.classList.remove('nav-open'))}
+$('#closeModal').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
+// Navigation becomes a focused modal window. Move the real section into it so every control remains live.
+$$('.nav button').forEach(b=>{b.addEventListener('click',e=>{e.stopImmediatePropagation();e.preventDefault();closeModal();const id=b.dataset.tab;if(id==='skills'){openSkills();return}if(id==='upgrade'){openUpgrade();return}const view=$('#'+id);if(!view)return;$$('.nav button').forEach(x=>x.classList.remove('active','nav-open'));b.classList.add('active','nav-open');returnParent=view.parentElement;returnNext=view.nextSibling;movedView=view;content.appendChild(view);view.classList.remove('hidden');openModal(b.textContent.trim(),'<div id="movingSlot"></div>');$('#movingSlot').appendChild(view);if(id==='prices')renderPrices();if(id==='compare')renderCompare();});},true);
+// Token calculator: official API price per million input/output tokens; not consumer subscriptions.
+const apiModels=[
+{name:'GPT-6.1 Terra',provider:'OpenAI',input:.50,output:2.50,url:'https://developers.openai.com/api/docs/pricing',source:'Standard · OpenAI API'},
+{name:'GPT-6.1 Sol',provider:'OpenAI',input:1,output:5,url:'https://developers.openai.com/api/docs/pricing',source:'Standard · OpenAI API'},
+{name:'GPT-6 Astra',provider:'OpenAI',input:5,output:25,url:'https://developers.openai.com/api/docs/pricing',source:'Standard · OpenAI API'},
+{name:'Gemini 3.6 Flash',provider:'Google',input:.75,output:3.75,url:'https://ai.google.dev/gemini-api/docs/pricing',source:'Standard paid tier · Google API'},
+{name:'Claude Opus 5.5',provider:'Anthropic',input:4,output:20,url:'https://platform.claude.com/docs/en/about-claude/pricing',source:'Standard · Claude API'},
+{name:'Claude Sonnet 5.5',provider:'Anthropic',input:2,output:10,url:'https://platform.claude.com/docs/en/about-claude/pricing',source:'Standard · Claude API'},
+{name:'Claude Haiku 4.5',provider:'Anthropic',input:1,output:5,url:'https://platform.claude.com/docs/en/about-claude/pricing',source:'Standard · Claude API'},
+{name:'Grok 4.7',provider:'xAI',input:2,output:6,url:'https://docs.x.ai/developers/pricing',source:'Short context · xAI API'},
+{name:'DeepSeek V4.1 Flash (peak)',provider:'DeepSeek',input:.30,output:1.20,url:'https://api-docs.deepseek.com/quick_start/pricing/',source:'Peak · cache miss · DeepSeek API'},
+{name:'DeepSeek V4 Pro (peak)',provider:'DeepSeek',input:1.32,output:3.96,url:'https://api-docs.deepseek.com/quick_start/pricing/',source:'Peak · DeepSeek API'},
+{name:'Mistral Medium 3.5',provider:'Mistral AI',input:1.5,output:7.5,url:'https://mistral.ai/pricing/api/',source:'Standard · Mistral API'},
+{name:'Mistral Small 4',provider:'Mistral AI',input:.15,output:.60,url:'https://mistral.ai/pricing/api/',source:'Standard · Mistral API'}
+];
+const STORE_KEY='aiArenaPrefsV2';
+function getStored(k){try{return window.localStorage.getItem(k)}catch(e){return null}}
+function setStored(k,v){try{window.localStorage.setItem(k,v);return true}catch(e){return false}}
+function removeStored(k){try{window.localStorage.removeItem(k)}catch(e){}}
+function readPrefs(){try{return JSON.parse(getStored(STORE_KEY)||'{}')}catch(e){return {}}}
+function savePrefs(patch){setStored(STORE_KEY,JSON.stringify({...readPrefs(),...patch}))}
+const savedPrefs=readPrefs();
+let tokenCount=Math.max(100000,Math.min(10000000,Number(savedPrefs.tokenCount)||1000000));
+let inputPercent=Math.max(0,Math.min(100,Number.isFinite(Number(savedPrefs.inputPercent))?Number(savedPrefs.inputPercent):70));
+function fmtUSD(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}
+function tokenHTML(){return `<div class="token-layout"><div class="token-control"><div class="small">כמות טוקנים להשוואה</div><div class="token-slider-shell" id="tokenSliderShell"><div class="token-track"><div class="token-fill" id="tokenFill"></div><div class="token-knob" id="tokenKnob" aria-hidden="true">◉</div><input id="tokenRange" class="token-range-overlay" type="range" min="100000" max="10000000" step="100000" value="${tokenCount}" aria-label="כמות טוקנים"></div><div class="token-scale"><span>MIN · 100K</span><strong id="tokenValue">${tokenCount.toLocaleString('en-US')}</strong><span>MAX · 10M <b class="token-flight">➤</b></span></div></div><div class="token-entry"><label class="small" for="tokenExact">או הזן כמות מדויקת</label><input id="tokenExact" class="field" type="text" inputmode="numeric" pattern="[0-9,]*" autocomplete="off" value="${tokenCount}"></div><p class="small">גרור את המטבע בתוך הסרגל. הכמות וההשוואה נשמרות במכשיר הזה.</p></div><div class="token-control"><h3 style="margin-top:0">חלוקת השימוש</h3><label class="small">אחוז טוקנים בקלט: <b id="inputPctLabel">${inputPercent}%</b></label><input id="inputPct" class="token-range" type="range" min="0" max="100" step="5" value="${inputPercent}"><div class="row small"><span>קלט: <b id="inputCount">${Math.round(tokenCount*inputPercent/100).toLocaleString('en-US')}</b></span><span>פלט: <b id="outputCount">${Math.round(tokenCount*(100-inputPercent)/100).toLocaleString('en-US')}</b></span></div><p class="small">המחיר מחושב בנפרד לקלט ולפלט. בפועל העלות תלויה ביחס שבין השניים.</p></div></div><div class="section"><div class="row"><h3>עלות משוערת לפי API</h3><span class="small">USD · לכל הכמות שנבחרה</span></div><div id="tokenResults" class="token-results"></div><p class="small">מחירי API רשמיים לפי מיליון טוקנים, לפני מסים וכלי צד. לא מדובר במחיר מנוי לצ'אט. מחירי DeepSeek מוצגים לפי תעריף peak, שעשוי להיות כפול מתעריף off-peak. בדוק מקור לפני רכישה.</p></div>`}
+
+function updateTokenUI(){const pct=+$ ('#inputPct').value/100;inputPercent=Math.round(pct*100);const n=tokenCount/1e6,inp=n*pct,out=n*(1-pct);$('#tokenValue').textContent=tokenCount.toLocaleString('en-US');$('#inputPctLabel').textContent=Math.round(pct*100)+'%';$('#inputCount').textContent=Math.round(tokenCount*pct).toLocaleString('en-US');$('#outputCount').textContent=Math.round(tokenCount*(1-pct)).toLocaleString('en-US');const progress=(tokenCount-100000)/(10000000-100000)*100;$('#tokenKnob').style.left=progress+'%';$('#tokenFill').style.width=progress+'%';$('#tokenSliderShell').classList.toggle('is-max',progress>96);savePrefs({tokenCount,inputPercent:Math.round(pct*100)});$('#tokenResults').innerHTML=apiModels.map(m=>{let cost=inp*m.input+out*m.output;return `<div class="token-result"><div><b>${m.name}</b><div class="model-kind">${m.provider} · ${m.source}</div><div class="small">קלט ${fmtUSD(m.input)} / פלט ${fmtUSD(m.output)} למיליון</div><a href="${m.url}" target="_blank" rel="noopener">מחיר רשמי ↗</a></div><strong>${fmtUSD(cost)}</strong></div>`}).join('')}
+function openTokenModal(){openModal('מחשבון טוקנים',tokenHTML());const range=$('#tokenRange'),exact=$('#tokenExact'),pct=$('#inputPct');range.addEventListener('input',()=>{tokenCount=+range.value;exact.value=tokenCount.toLocaleString('en-US');updateTokenUI()});exact.addEventListener('input',()=>{const raw=exact.value.replace(/[^0-9]/g,'');if(!raw)return;const parsed=Number(raw);if(!Number.isFinite(parsed))return;tokenCount=Math.max(100000,Math.min(10000000,parsed));range.value=tokenCount;updateTokenUI()});exact.addEventListener('change',()=>{tokenCount=Math.max(100000,Math.min(10000000,Number(exact.value.replace(/[^0-9]/g,''))||100000));exact.value=tokenCount.toLocaleString('en-US');range.value=tokenCount;updateTokenUI()});pct.addEventListener('input',updateTokenUI);updateTokenUI()}
+$('#openTokens').addEventListener('click',openTokenModal);
+// Account shell: local demo only. No real authentication or cloud sync without a backend.
+$('#openAccount').addEventListener('click',()=>{const saved=getStored('aiArenaDemoEmail')||'';openModal('החשבון שלי',`<div class="form-grid"><label class="wide">כתובת אימייל<input id="accountEmail" class="field" type="email" placeholder="name@example.com" value="${saved.replace(/&/g,'&amp;').replace(/\"/g,'&quot;')}"></label><div class="wide"><button class="btn primary" id="demoLogin">${saved?'שמור והמשך':'שמור פרופיל במכשיר'}</button> ${saved?'<button class="btn" id="demoLogout">התנתק</button>':''}</div></div><p class="small">הפרופיל וההעדפות נשמרים בדפדפן ובמכשיר הזה בלבד. אין סיסמה ואין אימות שרת, ולכן זו אינה התחברות מאובטחת או סנכרון בין מכשירים.</p><div class="note">הכמות שבחרת במחשבון, חלוקת הקלט/פלט והעדפות נוספות נשמרות אוטומטית באותו דפדפן. חשבון אמיתי שמסתנכרן דורש Backend.</div>`)});
+$('#modalContent').addEventListener('click',e=>{if(e.target.id==='demoLogin'){const em=$('#accountEmail').value.trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){toast('הכנס כתובת אימייל תקינה');return}setStored('aiArenaDemoEmail',em);$('#openAccount').textContent='החשבון שלי';toast('הפרופיל נשמר במכשיר הזה');closeModal()}if(e.target.id==='demoLogout'){removeStored('aiArenaDemoEmail');$('#openAccount').textContent='התחברות';toast('התנתקת מהפרופיל המקומי');closeModal()}});
+const rememberedEmail=getStored('aiArenaDemoEmail');if(rememberedEmail)$('#openAccount').textContent='החשבון שלי';
+// Skills library with curated starter resources and practical installation guidance.
+const skills=[
+{title:'Frontend Design',cat:'אתרים ועיצוב',desc:'עקרונות לבניית ממשקים, היררכיה, ריווח, נגישות ועיצוב רספונסיבי.',url:'https://github.com/anthropics/skills'},
+{title:'Web App Builder',cat:'אתרים ועיצוב',desc:'תכנון מסכים, קומפוננטות, טפסים וזרימות משתמש לאפליקציות ואתרים.',url:'https://github.com/anthropics/skills'},
+{title:'UI Audit / Unslop',cat:'אתרים ועיצוב',desc:'ביקורת ממשק שמסירה תבניות AI שחוקות ומשפרת טיפוגרפיה, צבע, ריווח ותנועה.',url:'https://github.com/heydamir/unslop'},
+{title:'Code Review',cat:'תכנות',desc:'סקירת קוד, איתור באגים, קריאות, אבטחה ובדיקות.',url:'https://github.com/anthropics/skills'},
+{title:'Git Workflow',cat:'תכנות',desc:'עזרה בעבודה עם Git, ענפים, Pull Requests ותיעוד שינויים.',url:'https://github.com/anthropics/skills'},
+{title:'Research Assistant',cat:'מחקר',desc:'בניית תוכנית מחקר, הצלבת מקורות וסיכום ממצאים עם קישורים.',url:'https://github.com/anthropics/skills'},
+{title:'Document Writer',cat:'כתיבה ומסמכים',desc:'יצירת מסמכים, סיכומים, מצגות ותבניות עבודה.',url:'https://github.com/anthropics/skills'},
+{title:'Data Analysis',cat:'נתונים',desc:'ניתוח טבלאות, ניקוי נתונים, חישובים והצגת תובנות.',url:'https://github.com/anthropics/skills'}
+];
+function openSkills(){openModal('ספריית Skills',`<div class="skill-layout"><aside class="skill-filters">${['הכול','אתרים ועיצוב','תכנות','מחקר','כתיבה ומסמכים','נתונים'].map((x,i)=>`<button class="skill-filter ${i===0?'active':''}" data-skillcat="${x}">${x}</button>`).join('')}</aside><div><p class="muted">Skills הם הוראות עבודה שמרחיבות את אופן הפעולה של כלי AI. כל פריט כאן הוא משאב חיצוני או תבנית התחלתית, לא התקנה אוטומטית.</p><div id="skillList"></div><h3>איך מוסיפים Skill?</h3><details><summary>Claude Code</summary><p class="small">שמור את תיקיית ה-Skill תחת ‎.claude/skills/ בפרויקט או בתיקיית המשתמש. ודא שקיים קובץ SKILL.md, ואז הפעל את Claude Code מחדש אם נדרש.</p></details><details><summary>ChatGPT</summary><p class="small">אין התקנת SKILL.md אוניברסלית בחשבון ChatGPT הרגיל. אפשר להעתיק את ההוראות ל-Custom Instructions או להשתמש ב-GPT מותאם/כלי Work אם זמין.</p></details><details><summary>Codex</summary><p class="small">שמור Skill בפורמט Agent Skills בתיקיית skills שהכלי סורק, כולל SKILL.md והפניות הנלוות.</p></details></div></div>`);function list(cat='הכול'){$('#skillList').innerHTML=skills.filter(x=>cat==='הכול'||x.cat===cat).map(x=>`<article class="skill-item"><h4>${x.title}</h4><p>${x.desc}</p><span class="model-kind">${x.cat}</span><br><a href="${x.url}" target="_blank" rel="noopener">פתח מקור והוראות ↗</a></article>`).join('')}list();$('#modalContent').querySelectorAll('[data-skillcat]').forEach(b=>b.addEventListener('click',()=>{$$('#modalContent [data-skillcat]').forEach(x=>x.classList.toggle('active',x===b));list(b.dataset.skillcat)}))}
+// Upgrade comparison and email alert preference preview.
+function openUpgrade(){openModal('השוואת תוכניות',`<div class="upgrade-grid"><div class="plan-box"><h3>חינם</h3><div class="price">$0</div><ul><li>חיפוש והשוואת מודלים</li><li>מחשבון טוקנים</li><li>ספריית Skills בסיסית</li><li>מדריכים ותשובות עזרה</li><li>מקום לפרסום ממומן</li></ul></div><div class="plan-box featured"><h3>Premium · רעיון לתוכנית</h3><div class="price">מחיר ייקבע בהמשך</div><ul><li>ללא פרסומות</li><li>התראות מותאמות על מודלים חדשים</li><li>מעקב אחר תקציב ושימוש</li><li>Skills ומדריכים מתקדמים</li><li>שמירת השוואות והעדפות בענן</li></ul><p class="small">התוכנית אינה למכירה כרגע. לא נגבה תשלום ולא נרשמים בפועל.</p><button class="btn primary" id="premiumNotify">עדכן אותי כשהתוכנית תהיה זמינה</button></div></div><p class="small">המחיר, אמצעי התשלום וההטבות הסופיות טרם הוגדרו. אין כאן חיוב אמיתי.</p>`);$('#premiumNotify').addEventListener('click',()=>toast('האפשרות תופעל לאחר חיבור מערכת חשבונות ודיוור'))}
+// Add secondary actions to page without pretending there is a backend.
+const about=$('#about');if(about){const extras=document.createElement('div');extras.className='panel section';extras.innerHTML='<h3>כלים נוספים</h3><div class="tools"><button class="btn" id="openSkills">ספריית Skills</button><button class="btn" id="openUpgrade">Upgrade</button><button class="btn" id="openAlerts">התראות על מודלים</button></div>';about.appendChild(extras);extras.querySelector('#openSkills').onclick=openSkills;extras.querySelector('#openUpgrade').onclick=openUpgrade;extras.querySelector('#openAlerts').onclick=()=>{const ap=JSON.parse(getStored('aiArenaAlertPrefs')||'{}');openModal('התראות על מודלים',`<div class="form-grid"><label class="wide">כתובת אימייל<input id="alertEmail" class="field" type="email" placeholder="name@example.com" value="${ap.email||''}"></label><label>תחום עניין<select id="alertTopic" class="field"><option>תכנות ובניית אתרים</option><option>מחקר</option><option>כתיבה</option><option>יצירת תמונות</option><option>כללי</option></select></label><label>תקציב חודשי<input id="alertBudget" class="field" type="number" value="${ap.budget??10}" min="0"></label><div class="wide"><button class="btn primary" id="saveAlert">שמור העדפה מקומית</button></div></div><p class="small">ההעדפה נשמרת בדפדפן הזה בלבד. שליחת מייל אוטומטית תדרוש שרת ושירות דיוור.</p>`);if(ap.topic)$('#alertTopic').value=ap.topic}}
+// Ensure all extra sections are available in the main app too, as shortcuts.
+const toolBar=document.createElement('div');toolBar.className='tools';toolBar.innerHTML='<button class="btn" id="skillsShortcut">ספריית Skills</button><button class="btn" id="upgradeShortcut">Upgrade</button>';$('#home .hero').after(toolBar);$('#skillsShortcut').onclick=openSkills;$('#upgradeShortcut').onclick=openUpgrade;
+$('#modalContent').addEventListener('click',e=>{if(e.target.id==='saveAlert'){const email=$('#alertEmail').value;if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){toast('כתובת אימייל לא תקינה');return}setStored('aiArenaAlertPrefs',JSON.stringify({email,topic:$('#alertTopic').value,budget:+$('#alertBudget').value}));toast('ההעדפה נשמרה במכשיר הזה בלבד')}});
+// Local help bot with honest, scoped answers.
+$('#chatFab').onclick=()=>$('#chatPanel').classList.toggle('open');$('#closeChat').onclick=()=>$('#chatPanel').classList.remove('open');function sendChat(){const input=$('#chatText'),q=input.value.trim();if(!q)return;const log=$('#chatLog');const u=document.createElement('div');u.className='chat-msg';u.textContent='אתה: '+q;log.appendChild(u);let a='אפשר לפתוח את דף ההשוואה מהסרגל, לבחור מודלים ולראות את ההבדלים. המחירים באתר הם אומדנים לפי מקורות הספקים, וכדאי לפתוח את המקור לפני רכישה.';if(/טוקן|token|מחשבון/i.test(q))a='לחץ על כפתור ״◉ טוקנים״ ליד החיפוש. גרור את הפס או הקלד מספר, ואז בחר את אחוז הקלט. העלות מחושבת לפי מחיר API לקלט ולפלט בנפרד.';else if(/skill|סקיל/i.test(q))a='פתח את ״ספריית Skills״. בחר קטגוריה כמו אתרים ועיצוב או תכנות, פתח את המקור, ופעל לפי הוראות ההתקנה המתאימות לכלי שלך.';else if(/מחיר|עלות|מנוי/i.test(q))a='יש הבדל בין מנוי לצ׳אט לבין API לפי טוקנים. במחשבון הטוקנים מוצגים מחירי API בלבד; במרכז המחירים נמצאים מנויים.';else if(/חשבון|התחבר/i.test(q))a='התחברות באתר היא כרגע הדגמה מקומית בלבד. אל תזין סיסמה אמיתית. חשבון אמיתי דורש שרת מאובטח.';const b=document.createElement('div');b.className='chat-msg';b.textContent='AI ARENA: '+a;log.appendChild(b);input.value='';log.scrollTop=log.scrollHeight}$('#sendChat').onclick=sendChat;$('#chatText').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});
+// Global shortcut for opening Skills and Upgrade from any page.
+window.openArenaSkills=openSkills;window.openArenaUpgrade=openUpgrade;
+})();
+</script>
+
+<script>
+(()=>{
+  const nav=document.querySelector('.top .nav');
+  if(!nav || document.getElementById('mobileMenuToggle')) return;
+  const btn=document.createElement('button');
+  btn.type='button';btn.id='mobileMenuToggle';btn.className='mobile-menu-toggle';
+  btn.setAttribute('aria-label','פתח תפריט');btn.setAttribute('aria-expanded','false');btn.textContent='☰';
+  nav.parentNode.insertBefore(btn,nav);
+  btn.addEventListener('click',()=>{
+    const open=nav.classList.toggle('mobile-nav-open');
+    btn.setAttribute('aria-expanded',String(open));
+    btn.textContent=open?'×':'☰';
+    btn.setAttribute('aria-label',open?'סגור תפריט':'פתח תפריט');
+  });
+  nav.querySelectorAll('button').forEach(item=>item.addEventListener('click',()=>{
+    nav.classList.remove('mobile-nav-open');btn.setAttribute('aria-expanded','false');btn.textContent='☰';
+  }));
+})();
+</script>
+
+</body></html>
+<script>
+// AI ARENA interaction patch: accessible, delegated and resilient controls.
+(function(){
+  const $ = (s, root=document) => root.querySelector(s);
+  const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+  function goTab(id){
+    $$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+    $$('.view').forEach(v=>v.classList.toggle('hidden',v.id!==id));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  // Navigation buttons always switch to their matching page.
+  $$('.nav button').forEach(b=>{b.type='button';b.addEventListener('click',()=>goTab(b.dataset.tab));});
+  // Search and category controls refresh the model cards.
+  $('#search').addEventListener('input',renderCards);
+  $('#category').addEventListener('change',renderCards);$('#onlyFavorites').addEventListener('change',renderCards);
+  $('#priceSearch').addEventListener('input',renderPrices);
+  $('#priceType').addEventListener('change',renderPrices);
+  $('#recommendBtn').onclick=()=>window.recommend();
+  // Make model cards keyboard accessible and delegate their clicks.
+  function makeCardsAccessible(){
+    $$('#cards .card').forEach(c=>{c.setAttribute('role','button');c.setAttribute('tabindex','0');c.setAttribute('aria-label','הצג פרטים על '+c.querySelector('h3').textContent);});
+  }
+  const cards=$('#cards');
+  cards.addEventListener('click',e=>{const c=e.target.closest('.card[data-id]');if(c)showDetail(c.dataset.id);});
+  cards.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.card[data-id]')){e.preventDefault();showDetail(e.target.dataset.id);}});
+  const originalRenderCards=renderCards;
+  window.renderCards=function(){originalRenderCards();makeCardsAccessible();};
+  // The detail page's price button is handled without inline JavaScript.
+  $('#detail').addEventListener('click',e=>{const b=e.target.closest('[data-open-prices]');if(b)openPrices(b.dataset.openPrices);});
+  const originalShowDetail=showDetail;
+  window.showDetail=function(id){originalShowDetail(id);const b=$('#detail button');if(b){b.removeAttribute('onclick');b.dataset.openPrices=id;b.type='button';}};
+  // Comparison: enforce a maximum of four selected models and always redraw.
+  function drawCompare(){
+    const checks=$$('#compareChecks input[type=checkbox]');
+    const ids=checks.filter(x=>x.checked).map(x=>x.value);
+    checks.forEach(x=>x.disabled=!x.checked&&ids.length>=4);
+    const target=$('#compareTable');
+    if(!ids.length){target.innerHTML='<p class="muted">בחר לפחות מודל אחד כדי להתחיל בהשוואה.</p>';return;}
+    const rows=[['חברה',id=>models.find(m=>m.id===id).company],['חוזקות',id=>models.find(m=>m.id===id).strengths.join(' · ')],['מתאים ל',id=>models.find(m=>m.id===id).best],['אתר רשמי',id=>`<a href="${models.find(m=>m.id===id).url}" target="_blank" rel="noopener">פתח ↗</a>`]];
+    target.innerHTML=`<div class="tablewrap"><table><thead><tr><th>תחום</th>${ids.map(id=>`<th>${models.find(m=>m.id===id).name}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td>${ids.map(id=>`<td>${r[1](id)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  }
+  $('#compareChecks').addEventListener('change',e=>{
+    if(e.target.matches('input[type=checkbox]')){
+      const checked=$$('#compareChecks input:checked');
+      if(checked.length>4){e.target.checked=false;}
+      drawCompare();
+    }
+  });
+  // Recommendation result button now opens the model profile on the home page.
+  const originalRecommend=recommend;
+  window.recommend=function(){
+    originalRecommend();
+    const old=$('#recommendResult button');
+    if(old){
+      const id=(old.getAttribute('onclick')||'').match(/showDetail\('([^']+)'\)/)?.[1];
+      old.removeAttribute('onclick');old.type='button';
+      old.addEventListener('click',()=>{if(id){goTab('home');showDetail(id);$('#detail').scrollIntoView({behavior:'smooth',block:'start'});}});
+    }
+  };
+  // Re-run initial render with the improved handlers in place.
+  renderCards();showDetail('chatgpt');renderPrices();setupCalculator();
+  // Make the calculator's purchase button a normal, explicit link-opening action.
+  const buy=$('#buyPlan');buy.type='button';
+})();
+</script>
